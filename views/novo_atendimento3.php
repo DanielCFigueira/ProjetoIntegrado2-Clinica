@@ -1,10 +1,10 @@
 <?php
 // views/novo_atendimento.php
-require_once '../config/session.php';
-require_once '../config/seguranca.php';
-require_once '../config/database.php';
-require_once 'header.php';
-require_once '../config/controle_acesso.php';
+require_once 'config/session.php';
+require_once 'config/seguranca.php';
+require_once 'config/database.php';
+require_once 'views/header.php';
+require_once 'config/controle_acesso.php';
 
 if (!is_admin() && !is_dentista() && !is_recepcionista()) {
     header('Location: ' . BASE_URL . 'index.php');
@@ -28,7 +28,7 @@ try {
 
 <div class="card">
     <h2>Novo Lançamento de Atendimento</h2>
-    <form id="form-atendimento" action="<?= BASE_URL ?>actions/salvar_atendimento2.php" method="POST" enctype="multipart/form-data">
+    <form id="form-atendimento" action="<?= BASE_URL ?>atendimento/salvarAjax" method="POST" enctype="multipart/form-data">
         
         <fieldset>
             <legend>Dados do Paciente</legend>
@@ -419,7 +419,7 @@ $(document).ready(function() {
     pacienteBuscaInput.autocomplete({
         source: function(request, response) {
             $.ajax({
-                url: "<?= BASE_URL ?>actions/buscar_paciente.php",
+                url: "<?= BASE_URL ?>pacientes/buscarAjax",
                 dataType: "json",
                 data: { term: request.term },
                 success: function(data) {
@@ -470,7 +470,7 @@ $(document).ready(function() {
         container.html('<h4>Carregando procedimentos pendentes...</h4>');
 
         $.ajax({
-            url: "<?= BASE_URL ?>actions/buscar_procedimentos_pendentes.php",
+            url: "<?= BASE_URL ?>pacientes/buscarProcedimentosPendentesAjax",
             dataType: "json",
             data: { paciente_id: pacienteId },
             success: function(data) {
@@ -1001,7 +1001,7 @@ $(document).ready(function() {
         // 1. Verificar pagamento pendente
         if (pacienteId) {
             try {
-                const response = await fetch(`<?= BASE_URL ?>actions/verificar_pagamento_pendente.php?paciente_id=${pacienteId}`);
+                const response = await fetch(`<?= BASE_URL ?>atendimentos/verificarPagamentoAjax?paciente_id=${pacienteId}`);
                 const data = await response.json();
 
                 if (data.pendente) {
@@ -1022,7 +1022,7 @@ $(document).ready(function() {
         const formData = new FormData(form);
 
         try {
-            const response = await fetch('<?= BASE_URL ?>actions/salvar_atendimento2.php', {
+            const response = await fetch('<?= BASE_URL ?>atendimento/salvarAjax', {
                 method: 'POST',
                 body: formData
             });
@@ -1049,4 +1049,4 @@ $(document).ready(function() {
 });
 </script>
 
-<?php require_once 'footer.php'; ?>
+<?php require_once 'views/footer.php'; ?>

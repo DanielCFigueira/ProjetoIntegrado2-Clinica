@@ -3,4 +3,4 @@
 
 // Define a URL base da aplicação.
 // Altere para a URL correta do seu ambiente.
-define('BASE_URL', '/trabalhoihc/');
+define('BASE_URL', '/projetointegrado2_turma2023/');

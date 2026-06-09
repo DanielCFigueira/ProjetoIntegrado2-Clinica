@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Se a URL solicitada não for um Arquivo real (!-f)
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# E não for um Diretório real (!-d)
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Mande tudo para o index.php, guaradando a URL digitada na variável "?url="
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

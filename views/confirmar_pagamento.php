@@ -1,16 +1,16 @@
 <?php
 // views/confirmar_pagamento.php
-require_once '../config/session.php';
-require_once '../config/seguranca.php';
-require_once '../config/database.php';
-require_once '../config/controle_acesso.php';
+require_once 'config/session.php';
+require_once 'config/seguranca.php';
+require_once 'config/database.php';
+require_once 'config/controle_acesso.php';
 
 // Acesso permitido para os perfis: proprietario (admin), recepcionista e dentista.
 if (!is_admin() && !is_recepcionista() && !is_dentista()) {
     header('Location: ' . BASE_URL . 'index.php');
     exit;
 }
-require_once 'header.php';
+require_once 'views/header.php';
 
 $paciente_id = $_GET['paciente_id'] ?? null;
 $paciente_nome = '';
@@ -66,7 +66,7 @@ if ($paciente_id) {
 <div class="card">
     <h2>Confirmar Pagamento</h2>
 
-    <form method="GET" action="confirmar_pagamento.php" class="form-busca-paciente">
+    <form method="GET" action="<?= BASE_URL ?>atendimentos/pagar" class="form-busca-paciente">
         <fieldset>
             <legend>Buscar Paciente</legend>
             <div class="form-group">
@@ -82,7 +82,7 @@ if ($paciente_id) {
 
 
     <?php if ($paciente_id && $paciente_nome): ?>
-        <form id="form-pagamento" action="<?= BASE_URL ?>actions/salvar_pagamento.php" method="POST">
+        <form id="form-pagamento" action="<?= BASE_URL ?>atendimento/salvarPagamentoAjax" method="POST">
              <input type="hidden" name="paciente_id" value="<?= htmlspecialchars($paciente_id ?? '') ?>">
             <input type="hidden" name="atendimento_id" value="<?= htmlspecialchars($ultimo_atendimento_id ?? '') ?>">
 
@@ -174,7 +174,7 @@ $(document).ready(function() {
     $("#paciente_busca").autocomplete({
         source: function(request, response) {
             $.ajax({
-                url: "<?= BASE_URL ?>actions/buscar_paciente.php",
+                url: "<?= BASE_URL ?>pacientes/buscarAjax",
                 dataType: "json",
                 data: { term: request.term },
                 success: function(data) {
