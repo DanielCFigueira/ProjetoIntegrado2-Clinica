@@ -21,6 +21,11 @@ class DespesaController {
     }
 
     public function salvar() {
+
+        require_once 'config/session.php';
+        require_once 'config/seguranca.php';
+        require_once 'config/controle_acesso.php';
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $descricao = $_POST['descricao'] ?? '';
             $valor = $_POST['valor'] ?? 0;
@@ -36,6 +41,11 @@ class DespesaController {
     }
 
     public function excluir() {
+
+        require_once 'config/session.php';
+        require_once 'config/seguranca.php';
+        require_once 'config/controle_acesso.php';
+
         $id = $_GET['id'] ?? null;
         if ($id) {
             $despesaModel = new Despesa();

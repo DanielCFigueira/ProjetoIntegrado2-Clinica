@@ -28,7 +28,7 @@ try {
 
 <div class="card">
     <h2>Novo Lançamento de Atendimento</h2>
-    <form id="form-atendimento" action="<?= BASE_URL ?>atendimento/salvarAjax" method="POST" enctype="multipart/form-data">
+    <form id="form-atendimento" action="<?= BASE_URL ?>atendimentos/salvarAjax" method="POST" enctype="multipart/form-data">
         
         <fieldset>
             <legend>Dados do Paciente</legend>
@@ -1022,7 +1022,7 @@ $(document).ready(function() {
         const formData = new FormData(form);
 
         try {
-            const response = await fetch('<?= BASE_URL ?>atendimento/salvarAjax', {
+            const response = await fetch('<?= BASE_URL ?>atendimentos/salvarAjax', {
                 method: 'POST',
                 body: formData
             });

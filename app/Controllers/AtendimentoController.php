@@ -11,7 +11,7 @@ class AtendimentoController {
         require_once 'config/controle_acesso.php';
         require_once 'config/app.php';
 
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['usuario_id'])) {
             header('Location: ' . BASE_URL . 'login.php');
             exit;
         }
@@ -31,7 +31,7 @@ class AtendimentoController {
             exit;
         }
 
-        if (!is_admin() && !is_recepcionista() && $_SESSION['user_id'] != $atendimento['id_dentista']) {
+        if (!is_admin() && !is_recepcionista() && $_SESSION['usuario_id'] != $atendimento['id_dentista']) {
              header('Location: ' . BASE_URL . 'index.php');
              exit;
         }

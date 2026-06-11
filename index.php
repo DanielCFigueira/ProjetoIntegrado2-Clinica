@@ -6,7 +6,6 @@ require_once 'autoload.php';
 require_once 'config/session.php';
 require_once 'config/app.php';
 require_once 'config/controle_acesso.php';
-require_once 'config/seguranca.php';
 
 use App\Core\Router;
 

@@ -20,6 +20,11 @@ class ProcedimentoController {
     }
 
     public function salvar() {
+
+        require_once 'config/session.php';
+        require_once 'config/seguranca.php';
+        require_once 'config/controle_acesso.php';
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nome = $_POST['nome'] ?? '';
             $categoria = $_POST['categoria'] ?? 'geral';

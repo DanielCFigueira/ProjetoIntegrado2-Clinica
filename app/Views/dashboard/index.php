@@ -67,7 +67,7 @@
                 <td data-label="Comissão">R$ <?= number_format($at['comissao_dentista'] ?? 0, 2, ',', '.') ?></td>
                 <td data-label="Valor Líquido">R$ <?= number_format($at['valor_liquido_clinica'], 2, ',', '.') ?></td>
                 <td data-label="Ações">
-                    <a href="<?= BASE_URL ?>relatorios" class="btn btn-secondary">Ver Detalhes</a>
+                    <a href="<?= BASE_URL ?>atendimentos/detalhes?id=<?= $at['id'] ?>" class="btn btn-secondary">Ver Detalhes</a>
                 </td>
             </tr>
             <?php endforeach; ?>

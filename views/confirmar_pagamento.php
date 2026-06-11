@@ -82,7 +82,7 @@ if ($paciente_id) {
 
 
     <?php if ($paciente_id && $paciente_nome): ?>
-        <form id="form-pagamento" action="<?= BASE_URL ?>atendimento/salvarPagamentoAjax" method="POST">
+        <form id="form-pagamento" action="<?= BASE_URL ?>atendimentos/salvarPagamentoAjax" method="POST">
              <input type="hidden" name="paciente_id" value="<?= htmlspecialchars($paciente_id ?? '') ?>">
             <input type="hidden" name="atendimento_id" value="<?= htmlspecialchars($ultimo_atendimento_id ?? '') ?>">
 

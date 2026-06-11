@@ -68,9 +68,10 @@ class DashboardController {
             $erro_msg = "Erro ao carregar dashboard: " . $e->getMessage();
         }
 
-        $formatter = new IntlDateFormatter('pt_BR', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'America/Sao_Paulo', IntlDateFormatter::GREGORIAN, 'MMMM \'de\' yyyy');
-        $mesAtual = $formatter->format(strtotime($data_inicio));
+        $meses = ['', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+            'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
+        $mesesAtual = $meses[(int)date('m', strtotime($data_inicio))] . ' de ' . date('Y', strtotime($data_inicio));
         require_once 'app/Views/dashboard/index.php';
     }
 }

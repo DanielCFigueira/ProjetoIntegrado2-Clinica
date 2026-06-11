@@ -32,6 +32,11 @@ class PacienteController {
     }
 
     public function salvar() {
+
+        require_once 'config/session.php';
+        require_once 'config/seguranca.php';
+        require_once 'config/controle_acesso.php';
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dados = [
                 'nome' => $_POST['paciente_nome'] ?? '',
@@ -97,6 +102,11 @@ class PacienteController {
     }
 
     public function atualizar() {
+        
+        require_once 'config/session.php';
+        require_once 'config/seguranca.php';
+        require_once 'config/controle_acesso.php';
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['paciente_id'] ?? null;
             if ($id) {

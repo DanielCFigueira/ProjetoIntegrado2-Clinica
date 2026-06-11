@@ -1,3 +1,4 @@
+<?php require_once 'views/header.php'; ?>
 <div class="card">
     <h2>Detalhes do Atendimento #<?= $atendimento['id'] ?></h2>
 

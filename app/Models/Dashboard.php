@@ -142,46 +142,4 @@ class Dashboard {
         $stmt->execute([$data_hoje]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-        public function getAtendimentosDentistaHoje($id_dentista) {
-        $data_hoje = date('Y-m-d');
-        $stmt = $this->pdo->prepare("
-            SELECT 
-                a.id as atendimento_id,
-                a.data_atendimento,
-                p.nome as paciente_nome,
-                p.telefone,
-                ap.id as procedimento_id,
-                proc.nome as procedimento_nome,
-                ap.status_execucao
-            FROM atendimentos a
-            JOIN pacientes p ON a.paciente_id = p.id
-            LEFT JOIN atendimento_procedimentos ap ON a.id = ap.id_atendimento
-            LEFT JOIN procedimentos proc ON ap.id_procedimento = proc.id
-            WHERE a.id_dentista = ? AND DATE(a.data_atendimento) = ?
-            ORDER BY a.data_atendimento ASC
-        ");
-        $stmt->execute([$id_dentista, $data_hoje]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function getAtendimentosRecepcionistaHoje() {
-        $data_hoje = date('Y-m-d');
-        $stmt = $this->pdo->prepare("
-            SELECT 
-                a.id as atendimento_id,
-                a.data_atendimento,
-                p.nome as paciente_nome,
-                p.telefone,
-                u.nome as dentista_nome,
-                a.status_pagamento,
-                a.valor_total
-            FROM atendimentos a
-            JOIN pacientes p ON a.paciente_id = p.id
-            LEFT JOIN usuarios u ON a.id_dentista = u.id
-            WHERE DATE(a.data_atendimento) = ?
-            ORDER BY a.data_atendimento ASC
-        ");
-        $stmt->execute([$data_hoje]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 }
