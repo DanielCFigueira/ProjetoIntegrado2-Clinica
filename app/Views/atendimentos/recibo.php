@@ -21,16 +21,16 @@ function valorPorExtenso($valor) {
     return "$reais $reais_texto e $centavos $centavos_texto";
 }
 
-// Formata a data por extenso
-$formatter = new IntlDateFormatter(
-    'pt_BR',
-    IntlDateFormatter::FULL,
-    IntlDateFormatter::NONE,
-    'America/Sao_Paulo',
-    IntlDateFormatter::GREGORIAN,
-    'd \'de\' MMMM \'de\' yyyy'
-);
-$data_atendimento_formatada = $formatter->format(strtotime($atendimento['data_atendimento']));
+// Formata a data por extenso (compatível com XAMPP sem Intl)
+$timestamp = strtotime($atendimento['data_atendimento']);
+$meses = [
+    1 => 'janeiro', 2 => 'fevereiro', 3 => 'março', 4 => 'abril', 5 => 'maio', 6 => 'junho',
+    7 => 'julho', 8 => 'agosto', 9 => 'setembro', 10 => 'outubro', 11 => 'novembro', 12 => 'dezembro'
+];
+$dia = date('d', $timestamp);
+$mes = $meses[(int)date('m', $timestamp)];
+$ano = date('Y', $timestamp);
+$data_atendimento_formatada = "$dia de $mes de $ano";
 
 $dentista_nome = $atendimento['dentista_nome'] ?? 'Não informado';
 

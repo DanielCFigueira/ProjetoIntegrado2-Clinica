@@ -573,9 +573,13 @@ ALTER TABLE `atendimento_pagamentos`
     `comissao_especializado` decimal(5,4) NOT NULL DEFAULT '0.4000',
     `comissao_protese` decimal(5,4) NOT NULL DEFAULT '0.5000',
     `comissao_canal` decimal(5,4) NOT NULL DEFAULT '0.5000',
+    `clinica_nome` VARCHAR(255) NOT NULL DEFAULT 'Clínica Prev Dentistas',
+    `clinica_endereco` TEXT NOT NULL DEFAULT 'Endereço não cadastrado',
+    `clinica_cnpj` VARCHAR(20) NOT NULL DEFAULT '00.000.000/0001-00',
+    `clinica_telefone` VARCHAR(20) NOT NULL DEFAULT '(00) 0000-0000',
     PRIMARY KEY (`id`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-  INSERT IGNORE INTO 'configuracoes_gerais' ('id') VALUES (1);
+  INSERT IGNORE INTO `configuracoes_gerais` (`id`) VALUES (1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

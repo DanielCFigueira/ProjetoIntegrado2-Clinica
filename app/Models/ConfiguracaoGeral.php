@@ -17,9 +17,10 @@ class ConfiguracaoGeral {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Atualiza todas as taxas de uma vez
+    // Atualiza todas as taxas e dados da clinica de uma vez
     public function atualizar($dados) {
         $sql = "UPDATE configuracoes_gerais SET 
+                clinica_nome = ?, clinica_endereco = ?, clinica_cnpj = ?, clinica_telefone = ?,
                 taxa_debito = ?, taxa_credito_avista = ?, taxa_credito_2 = ?, taxa_credito_3 = ?, 
                 taxa_credito_4 = ?, taxa_credito_5 = ?, taxa_credito_6 = ?, taxa_credito_7 = ?, 
                 taxa_credito_8 = ?, taxa_credito_9 = ?, taxa_credito_10 = ?, taxa_credito_11 = ?, 
@@ -30,6 +31,7 @@ class ConfiguracaoGeral {
         
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([
+            $dados['clinica_nome'], $dados['clinica_endereco'], $dados['clinica_cnpj'], $dados['clinica_telefone'],
             $dados['taxa_debito'], $dados['taxa_credito_avista'], $dados['taxa_credito_2'], $dados['taxa_credito_3'], 
             $dados['taxa_credito_4'], $dados['taxa_credito_5'], $dados['taxa_credito_6'], $dados['taxa_credito_7'], 
             $dados['taxa_credito_8'], $dados['taxa_credito_9'], $dados['taxa_credito_10'], $dados['taxa_credito_11'], 

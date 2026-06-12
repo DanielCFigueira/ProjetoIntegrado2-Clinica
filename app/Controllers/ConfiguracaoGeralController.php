@@ -40,6 +40,10 @@ class ConfiguracaoGeralController {
 
         // Valores brutos do formulário (que o admin digitou na tela em "reais" ou "porcentagem inteira")
         $dados = [
+            'clinica_nome' => trim($_POST['clinica_nome'] ?? ''),
+            'clinica_endereco' => trim($_POST['clinica_endereco'] ?? ''),
+            'clinica_cnpj' => trim($_POST['clinica_cnpj'] ?? ''),
+            'clinica_telefone' => trim($_POST['clinica_telefone'] ?? ''),
             'taxa_debito' => $converterParaDecimal($_POST['taxa_debito']),
             'taxa_credito_avista' => $converterParaDecimal($_POST['taxa_credito_avista']),
             'taxa_credito_2' => $converterParaDecimal($_POST['taxa_credito_2']),

@@ -65,13 +65,15 @@ class AtendimentoController {
             $atendimento['valor_total'] += $proc['valor_procedimento'];
         }
 
-        // Dados da clínica (exemplo, idealmente viria de um config)
-        $clinica_nome = "Clínica Odontológica Prev Dentistas";
-        $clinica_endereco = "Rua União 1, Esquina com a Rua D - Atalaia, Ananindeua - PA, 67013-350";
-        $clinica_cnpj = "29.249738/0001-79";
-        $clinica_telefone = "(91) 98306-7459";
-        
-        $dentista_nome = $atendimento['dentista_nome'] ?? 'Não informado';
+        // Dados da clínica puxados do Banco de Dados
+        $modelConfig = new \App\Models\ConfiguracaoGeral();
+        $configuracoes = $modelConfig->getConfiguracoes();
+        $clinica_nome = $configuracoes['clinica_nome'] ?? "Clínica Odontológica";
+        $clinica_endereco = $configuracoes['clinica_endereco'] ?? "Endereço não cadastrado";
+        $clinica_cnpj = $configuracoes['clinica_cnpj'] ?? "00.000.000/0001-00";
+        $clinica_telefone = $configuracoes['clinica_telefone'] ?? "(00) 0000-0000";
+
+        //$dentista_nome = $atendimento['dentista_nome'] ?? 'Não informado';
 
         require_once 'app/Views/atendimentos/recibo.php';
     }

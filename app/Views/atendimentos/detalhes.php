@@ -84,7 +84,15 @@
 
     <hr>
     
-    <a href="<?= BASE_URL ?>index.php" class="btn">Voltar</a>
+    <div style="display: flex; gap: 10px;">
+    <a href="<?= BASE_URL ?>index.php" class="btn btn-secondary" style="background-color: #6c757d; color: white;">Voltar</a>
+    
+    <?php if ($totalPago > 0): ?>
+        <a href="<?= BASE_URL ?>atendimentos/recibo?id=<?= $atendimento['id'] ?>" target="_blank" class="btn btn-primary" style="background-color: #28a745; color: white; text-decoration: none;">
+            🖨️ Imprimir Recibo
+        </a>
+    <?php endif; ?>
+</div>
 </div>
 
 <style>

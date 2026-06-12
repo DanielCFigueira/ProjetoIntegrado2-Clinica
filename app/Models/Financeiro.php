@@ -54,17 +54,6 @@ class Financeiro {
             $valorTaxa = round($valorBruto * $taxaTotal, 2);
             $valorLiquido = $valorBruto - $valorTaxa;
 
-            // --- Correção de Arredondamento da Operadora (Ajuste Fino original mantido) ---
-            $chaveExemplo = $valorBruto . '_' . $qtdParcelas;
-            $ajustesDeCentavos = [
-                '430_3' => 407.33,
-                '160_2' => 152.91
-            ];
-
-            if (isset($ajustesDeCentavos[$chaveExemplo])) {
-                 $valorLiquido = $ajustesDeCentavos[$chaveExemplo];
-                 $valorTaxa = $valorBruto - $valorLiquido;
-            }
         } else {
             // Dinheiro ou PIX não tem taxa
             $taxaTotal = 0.0;

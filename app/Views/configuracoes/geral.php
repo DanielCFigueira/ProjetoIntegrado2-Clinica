@@ -12,6 +12,28 @@
 
     <form action="<?= BASE_URL ?>configuracoes_gerais/salvar" method="POST" style="margin-top: 1.5rem;">
         
+
+        <h3 style="border-bottom: 1px solid #eee; padding-bottom: 0.5rem; margin-top: 1rem;">🏢 Dados da Clínica</h3>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem; margin-top: 1rem;">
+            <div class="form-group">
+                <label>Nome da Clínica</label>
+                <input type="text" name="clinica_nome" value="<?= htmlspecialchars($configuracoes['clinica_nome'] ?? '') ?>" required>
+            </div>
+            <div class="form-group">
+                <label>CNPJ</label>
+                <input type="text" name="clinica_cnpj" value="<?= htmlspecialchars($configuracoes['clinica_cnpj'] ?? '') ?>" required>
+            </div>
+            <div class="form-group">
+                <label>Telefone</label>
+                <input type="text" name="clinica_telefone" value="<?= htmlspecialchars($configuracoes['clinica_telefone'] ?? '') ?>" required>
+            </div>
+            <div class="form-group" style="grid-column: 1 / -1;">
+                <label>Endereço Completo</label>
+                <input type="text" name="clinica_endereco" value="<?= htmlspecialchars($configuracoes['clinica_endereco'] ?? '') ?>" required style="width: 100%;">
+            </div>
+        </div>
+
         <h3 style="border-bottom: 1px solid #eee; padding-bottom: 0.5rem; margin-top: 2rem;">💳 Taxas da Maquininha (%)</h3>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; margin-top: 1rem;">
